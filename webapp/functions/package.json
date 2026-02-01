@@ -1,0 +1,25 @@
+{
+  "name": "broncohacks-functions",
+  "description": "Cloud Functions for BroncoHacks",
+  "scripts": {
+    "serve": "firebase emulate:functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "*",
+    "firebase-admin": "*",
+    "axios": "*",
+    "cheerio": "*"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "*"
+  },
+  "private": true
+}

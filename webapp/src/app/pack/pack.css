@@ -1,0 +1,155 @@
+/* Pack container */
+.pack-container {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background: #3b82f6;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.pack-container:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Pack title */
+.pack-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Slider container */
+.slider-container {
+  position: relative;
+  width: 100%; /* Take up the entire width of the pack */
+  height: 60px; /* Make the slider a rectangle */
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5));
+  border-radius: 10px; /* Slightly rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: background 0.2s ease;
+}
+
+.slider-container:hover {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6));
+}
+
+.slider-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(to right, #3b82f6, rgba(0, 0, 0, 0.1)); /* Left part changes to #3b82f6 */
+  transition: width 0.1s ease, opacity 0.1s ease;
+  z-index: 1;
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  left: -200px;
+  transform: translateY(-50%);
+  width: 100px; /* Make the button a tab */
+  height: 100%; /* Match the height of the slider */
+  background: #ef4444;
+  border-radius: 5px; /* Slightly rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  z-index: 2;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: left 0.1s ease; /* Smooth movement */
+}
+
+.slider-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Card container */
+.card-container {
+  position: relative;
+  width: 300px; /* Match the pack width */
+  height: 400px; /* Match the pack height */
+  overflow: hidden;
+  background: #f3f4f6; /* Light background to make cards visible */
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Card styles */
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #3b82f6;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  opacity: 1;
+  transform: translateY(0); /* Default position */
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Stacked cards */
+.card:not(.active) {
+  opacity: 0.8; /* Slightly transparent for stacked cards */
+  transform: translateY(10px); /* Offset for stacking */
+}
+
+/* Swipe animation */
+.card.swiped {
+  transform: translateY(-120%); /* Swipe up animation */
+  opacity: 0;
+}
+
+/* Active card */
+.card.active {
+  opacity: 1;
+  transform: translateY(0); /* Bring the active card to the front */
+}
+
+/* Swipe button */
+.swipe-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ef4444;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.swipe-button:hover {
+  background: #dc2626;
+}

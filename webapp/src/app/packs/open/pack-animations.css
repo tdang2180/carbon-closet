@@ -1,0 +1,334 @@
+/* Pack opening animations */
+
+.pack-container {
+  perspective: 1000px;
+  width: 300px;
+  height: 450px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.pack {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.pack.opening {
+  animation: openPack 1.5s forwards;
+}
+
+@keyframes openPack {
+  0% {
+    transform: rotateY(0) translateZ(0);
+  }
+  50% {
+    transform: rotateY(180deg) translateZ(0);
+  }
+  60% {
+    transform: rotateY(180deg) translateZ(50px);
+  }
+  100% {
+    transform: rotateY(180deg) translateZ(300px);
+  }
+}
+
+.pack-front, .pack-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.pack-front {
+  background: linear-gradient(135deg, #3498db, #1d6fa5);
+  color: white;
+  z-index: 2;
+}
+
+.pack-back {
+  background: linear-gradient(135deg, #2c3e50, #1a2530);
+  transform: rotateY(180deg);
+}
+
+.pack-logo {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.pack-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  20%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Card container to match pack dimensions */
+.card-container {
+  width: 300px;
+  height: 450px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* Card reveal animations */
+
+.card-reveal {
+  animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center bottom;
+}
+
+@keyframes cardReveal {
+  0% {
+    transform: scale(0.8) translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.1) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  transform: translateX(-100%);
+  animation: shine 2s infinite;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.card-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+  }
+}
+
+/* Rarity effects */
+
+.rarity-common {
+  background: linear-gradient(to bottom, #b8b8b8, #d6d6d6);
+}
+
+.rarity-uncommon {
+  background: linear-gradient(to bottom, #4caf50, #81c784);
+}
+
+.rarity-rare {
+  background: linear-gradient(to bottom, #2196f3, #64b5f6);
+}
+
+.rarity-epic {
+  background: linear-gradient(to bottom, #9c27b0, #ba68c8);
+}
+
+.rarity-legendary {
+  background: linear-gradient(to bottom, #ffc107, #ffd54f);
+  animation: legendaryPulse 2s infinite alternate;
+  position: relative;
+  z-index: 0;
+}
+
+/* Add converted rarity style */
+.rarity-converted {
+  background: linear-gradient(to bottom, #9e9e9e, #d1d1d1);
+  border: 2px solid #7d7d7d;
+  opacity: 0.7;
+  position: relative;
+}
+
+.rarity-converted::after {
+  content: "Converted";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 5;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+}
+
+@keyframes legendaryPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.9), 0 0 30px rgba(255, 165, 0, 0.7);
+  }
+}
+
+/* Swipe indicators */
+
+.swipe-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.swipe-indicator:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.swipe-left {
+  left: 10px;
+}
+
+.swipe-right {
+  right: 10px;
+}
+
+/* Card swiping animation */
+
+.swipe-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.card-swipe-left {
+  animation: swipeLeft 0.5s forwards;
+}
+
+.card-swipe-right {
+  animation: swipeRight 0.5s forwards;
+}
+
+@keyframes swipeLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.card-enter {
+  animation: cardEnter 0.5s forwards;
+}
+
+@keyframes cardEnter {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Add this for the converted cards */
+.converted-card {
+  opacity: 0.5;
+  position: relative;
+}
+
+.converted-card::after {
+  content: "Converted";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 5;
+}
+
+/* Animation for token conversion */
+@keyframes tokenFade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.token-convert {
+  animation: tokenFade 0.5s forwards;
+}
